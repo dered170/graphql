@@ -1,4 +1,4 @@
-require('dotenv').config();
+//equire('dotenv').config();
 const { GraphQLServer } = require('graphql-yoga');
 const {importSchema} = require('graphql-import'); // para importat archivos importamos schema
 
