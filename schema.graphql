@@ -1,0 +1,59 @@
+scalar Date
+scalar Upload
+directive @auth on FIELD_DEFINITION | FIELD
+
+type Query {
+    saludo(name: String!):String! 
+    getAllEvents:[Event]!
+    getEvent(id:ID):Event! 
+}
+type Mutation{
+    createUser(user:inputUser):User!
+    login(user:inputLogin):Auth!
+    createEvent(data:inputEvent):Event!
+    addPhoto(photo:Upload!):String 
+}
+type User {
+    _id:ID
+    name:String
+    email:String
+}
+type Auth{
+    status:String!
+    token:String!
+}
+type Event {
+    _id:ID
+    eventName:String!
+    desc:String!
+    dayEvent:Date
+    price:Int
+    location:Location
+    user:ID
+}
+type Location {
+    type:String!
+    coordinates:[Float]!
+}
+input inputEvent{
+    eventName:String!
+    desc:String!
+    dayEvent:Date
+    price:Int
+    location:inputLocation
+}
+input inputLocation {
+    type:String!
+    coordinates:[Float]!
+}
+
+input inputUser{
+    name:String
+    email:String
+    password:String
+}
+
+input inputLogin{
+    email:String!
+    password:String!
+}
